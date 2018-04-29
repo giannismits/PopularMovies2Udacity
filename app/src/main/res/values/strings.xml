@@ -2,7 +2,7 @@
     <string name="app_name">Popular Movies</string>
 
     //fragmant xml strings
-    <string name="offline">No Internet Connection Found.</string>
+    <string name="offline">Slow Connection or no Internet Connection.</string>
 
     //moviesDetails xml strings
     <string name="original_title">Original Title :</string>

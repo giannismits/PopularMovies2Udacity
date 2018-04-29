@@ -114,6 +114,8 @@ public class MoviesDetailActivity extends AppCompatActivity {
                     //set the adapter
                     trailersAdapter = new TrailersAdapter(getApplicationContext(), trailersDataFromJson );
                     rv.setAdapter(trailersAdapter);
+                }else {
+                    setContentView(R.layout.fragmant_layout);
                 }
             }
 

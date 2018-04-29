@@ -12,19 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".MoviesDetailActivity"
         android:label="Movies"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            >
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity"/>
         </activity>
+
         <provider
             android:name=".Database.MoviesProvider"
             android:authorities="com.udacity.giannis.popularmovies.popularmovies"

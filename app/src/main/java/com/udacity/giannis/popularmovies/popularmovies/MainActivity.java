@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity{
     private Cursor cursor;
    private List<Movies> moviesDataFromJson = new ArrayList<>();
    private List<Movies> favoritesDAta = new ArrayList<>();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //check connectivity method
-    public boolean checkConnectivity(){
+    public  boolean checkConnectivity(){
         ConnectivityManager checkConnectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = checkConnectivity.getActiveNetworkInfo();
         return info !=null && info.isConnectedOrConnecting();
@@ -97,6 +102,8 @@ public class MainActivity extends AppCompatActivity{
                 if (moviesDataFromJson != null) {
                     //call the method populateUi to set the data to moviesAdapter class.
                     populateUi(moviesDataFromJson);
+                }else {
+                    setContentView(R.layout.fragmant_layout);
                 }
             }
             @Override
@@ -158,8 +165,6 @@ public class MainActivity extends AppCompatActivity{
         }
     return super.onOptionsItemSelected(item);
     }
-
-
     public void populateUi (final List list){
       //call the adapter class and pass context and also the List of movies objects
       gv =  findViewById(R.id.grid_view);
@@ -170,7 +175,6 @@ public class MainActivity extends AppCompatActivity{
       mMoviesAdapter = new MoviesAdapter(this, list );
       gv.setAdapter(mMoviesAdapter);
   }
-
   public void populateFavoritesUi(List list){
       //call the adapter class and pass context and also the List of favorites movies objects
         fv = findViewById(R.id.grid_view);
@@ -181,6 +185,16 @@ public class MainActivity extends AppCompatActivity{
       mFavoritesAdapter = new FavoritesAdapter(this,list);
       fv.setAdapter(mFavoritesAdapter);
   }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
 
 
